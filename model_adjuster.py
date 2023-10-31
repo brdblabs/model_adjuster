@@ -1,6 +1,11 @@
 import streamlit as st
 
+
 st.title("Customizable Neural Network")
+
+datasets = st.sidebar.selectbox("Select a dataset:", ["MNIST", "Fashion_MNIST"])
+
+st.write("You have selected: ", datasets)
 
 num_neurons = st.sidebar.slider("Number of neurons in the hidden layer:", 1, 64)
 num_epochs = st.sidebar.slider("Number of epochs", 1, 10)
@@ -8,12 +13,21 @@ activation = st.sidebar.text_input("Activaton function")
 
 if st.button("Train the model"):
     import tensorflow as tf
-    from tensorflow.keras.datasets import mnist
+    
     from tensorflow.keras.layers import *
     from tensorflow.keras.models import Sequential
     from tensorflow.keras.callbacks import ModelCheckpoint
-    (X_train, y_train), (X_test, y_test) = mnist.load_data()
-
+    from tensorflow.keras.datasets import mnist
+    from tensorflow.keras.datasets import fashion_mnist
+    import matplotlib.pyplot as plt
+    
+    if datasets == "MNIST":
+        (X_train, y_train), (X_test, y_test) = mnist.load_data()
+    else:
+        (X_train, y_train), (X_test, y_test) = fashion_mnist.load_data()
+    
+    st.image(X_train[5], width=100)
+   
     def preprocess_image(images):
         images= images / 255
         return images
