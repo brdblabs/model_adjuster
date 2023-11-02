@@ -19,8 +19,7 @@ if st.button("Train the model"):
     from tensorflow.keras.callbacks import ModelCheckpoint
     from tensorflow.keras.datasets import mnist
     from tensorflow.keras.datasets import fashion_mnist
-    import matplotlib.pyplot as plt
-    
+        
     if datasets == "MNIST":
         (X_train, y_train), (X_test, y_test) = mnist.load_data()
     else:
