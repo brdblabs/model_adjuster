@@ -44,6 +44,7 @@ if st.button("Train the model"):
     save_cp = ModelCheckpoint("model", save_best_only=True)
     history_cp = tf.keras.callbacks.CSVLogger("history.csv", separator=',')
     model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=num_epochs, callbacks=[save_cp, history_cp])
+    
 
 if st.button("Evaluate the model"):
     import pandas as pd
